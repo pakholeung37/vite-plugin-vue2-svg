@@ -1,0 +1,31 @@
+{
+  "name": "rollup-typescript-starter",
+  "version": "0.0.1",
+  "description": "To fast start a typescript library.",
+  "main": "lib/bundle.cjs.js",
+  "module": "lib/bundle.esm.js",
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "build:type": "tsc -p ./tsconfig.type.json",
+    "test": "jest --no-cache"
+  },
+  "author": "zenoslin",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^24.0.19",
+    "@typescript-eslint/eslint-plugin": "^3.8.0",
+    "@typescript-eslint/parser": "^3.8.0",
+    "eslint": "^7.6.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "jest": "^24.9.0",
+    "prettier": "^2.0.5",
+    "rollup": "^1.23.1",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript": "^1.0.1",
+    "ts-jest": "^24.1.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.6.4"
+  }
+}
