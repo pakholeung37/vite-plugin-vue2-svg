@@ -1,0 +1,16 @@
+{
+  "name": "vite-svg-example",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "vite-plugin-vue2": "^1.2.2",
+    "vue": "^2.6.0"
+  },
+  "devDependencies": {
+    "vite": "^2.0.0",
+    "vite-plugin-vue2-svg": "file:../../"
+  }
+}
