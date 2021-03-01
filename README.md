@@ -1,21 +1,34 @@
-# rollup-starter-ts
+# vite-plugin-vue2-svg
 
-To fast start a typescript library.  
+load SVG files as Vue components, for Vue2.x only.
 
-## Getting started
-
-Clone this repository and install its dependencies:
+## Install
 
 ```bash
-git clone https://github.com/zenoslin/rollup-starter-ts.git
-cd rollup-starter-ts
-npm install
+yarn install vite-plugin-vue2-svg
 ```
 
-## scripts
-- `npm run build` builds the library to `lib`.
-- `npm run build:type` builds `.d.ts` file for the library.
-- `npm run test` use `jest` to test the source files.
+## Usage
+
+```js
+// vite.config.ts
+import { defineConfig } from "vite";
+import { createVuePlugin } from "vite-plugin-vue2"; // vue2 plugin
+import { createSvgPlugin } from "vite-plugin-vue2-svg";
+
+export default defineConfig({
+  plugins: [createVuePlugin(), createSvgPlugin()],
+});
+```
+
+## Options
+
+```js
+createSvgPlugin({
+  svgoConfig: SVGO.Options, // check https://github.com/svg/svgo
+});
+```
 
 ## License
+
 [MIT](LICENSE)
