@@ -1,8 +1,9 @@
 {
   "name": "vite-plugin-vue2-svg",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "To fast start a typescript library.",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "dev": "tsc -w",
