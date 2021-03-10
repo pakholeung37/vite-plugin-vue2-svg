@@ -2,6 +2,8 @@
 
 load SVG files as Vue components, for Vue2.x only.
 
+[![NPM](https://nodei.co/npm/<package>.png)](https://npmjs.org/package/vite-plugin-vue2-svg/)
+
 ## Install
 
 ```bash

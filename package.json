@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-vue2-svg",
-  "version": "0.1.3",
-  "description": "To fast start a typescript library.",
+  "version": "0.1.4",
+  "description": "load SVG files as Vue components, for Vue2.x only.",
   "main": "lib/index.js",
   "types": "./lib/index.d.ts",
   "files": [
