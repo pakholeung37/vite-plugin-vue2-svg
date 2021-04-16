@@ -23,6 +23,22 @@ export default defineConfig({
 });
 ```
 
+```vue
+// App.vue
+<template>
+  <Icon />
+</template>
+<script>
+import Icon from "./icon.svg";
+
+export default {
+  components: {
+    Icon,
+  },
+};
+</script>
+```
+
 ## Options
 
 ```js
