@@ -9,7 +9,7 @@
     "removeComments": true,
     "sourceMap": true,
     "downlevelIteration": true,
-    "lib": ["es6"],
+    "lib": ["es6", "dom"],
     "outDir": "./lib",
     "declaration": true
   },

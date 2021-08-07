@@ -52,13 +52,14 @@ export function createSvgPlugin(
   return {
     name: "vite-plugin-vue2-svg",
     async transform(_source: string, id: string) {
-      const isMatch = id.match(svgRegex);
+      const fname = id.replace(/\?.*$/, "");
+      const isMatch = svgRegex.test(fname);
       if (isMatch) {
-        const code: string = readFileSync(id, { encoding: "utf-8" });
-        const svg = await optimizeSvg(svgo, code, id);
+        const code: string = readFileSync(fname, { encoding: "utf-8" });
+        const svg = await optimizeSvg(svgo, code, fname);
         if (!svg)
           throw new Error(`[vite-plugin-vue2-svg] fail to compile ${id}`);
-        const result = compileSvg(svg, id);
+        const result = compileSvg(svg, fname);
 
         return result;
       }
