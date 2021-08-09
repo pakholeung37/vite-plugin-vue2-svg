@@ -7,7 +7,9 @@ load SVG files as Vue components, for Vue2.x only.
 ## Install
 
 ```bash
-yarn install vite-plugin-vue2-svg
+yarn add vite-plugin-vue2-svg
+# or
+npm install vite-plugin-vue2-svg
 ```
 
 ## Usage
@@ -24,7 +26,7 @@ export default defineConfig({
 ```
 
 ```vue
-// App.vue
+<!-- App.vue -->
 <template>
   <Icon />
 </template>
