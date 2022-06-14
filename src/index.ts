@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { basename } from "path";
-import SVGO, { Options } from "svgo";
+import { optimize, OptimizeOptions } from "svgo";
 import { Plugin } from "vite";
 import { compileTemplate, parse } from "@vue/component-compiler-utils";
 import * as compiler from "vue-template-compiler";
@@ -27,26 +27,27 @@ function compileSvg(svg: any, id: string): string {
   return `
     ${result.code}
     export default {
-      render: render,    
+      render: render,
     }
   `;
 }
 
-async function optimizeSvg(svgo: SVGO, content: string, path: string) {
-  const { data } = await svgo.optimize(content, {
-    path,
-  });
+function optimizeSvg(content: string, svgoConfig: OptimizeOptions) {
+  const result = optimize(content, svgoConfig);
 
-  return data;
+  if ("data" in result) {
+    return result.data;
+  }
+
+  throw new Error(`Cannot optimize SVG ${svgoConfig.path}`);
 }
 
 export function createSvgPlugin(
   options: {
-    svgoConfig?: Options;
+    svgoConfig?: OptimizeOptions;
   } = {},
 ): Plugin {
   const { svgoConfig } = options;
-  const svgo = new SVGO(svgoConfig);
   const svgRegex = /\.svg$/;
 
   return {
@@ -56,9 +57,10 @@ export function createSvgPlugin(
       const isMatch = svgRegex.test(fname);
       if (isMatch) {
         const code: string = readFileSync(fname, { encoding: "utf-8" });
-        const svg = await optimizeSvg(svgo, code, fname);
+        let svg = await optimizeSvg(code, { path: fname, ...svgoConfig });
         if (!svg)
           throw new Error(`[vite-plugin-vue2-svg] fail to compile ${id}`);
+        svg = svg.replace("<svg", '<svg v-on="$listeners"');
         const result = compileSvg(svg, fname);
 
         return result;
