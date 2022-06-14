@@ -39,7 +39,9 @@ function optimizeSvg(content: string, svgoConfig: OptimizeOptions) {
     return result.data;
   }
 
-  throw new Error(`Cannot optimize SVG ${svgoConfig.path}`);
+  throw new Error(
+    `[vite-plugin-vue2-svg] cannot optimize SVG ${svgoConfig.path}`,
+  );
 }
 
 export function createSvgPlugin(
@@ -53,6 +55,10 @@ export function createSvgPlugin(
   return {
     name: "vite-plugin-vue2-svg",
     async transform(_source: string, id: string) {
+      if (/\?raw/.test(id)) {
+        return null;
+      }
+
       const fname = id.replace(/\?.*$/, "");
       const isMatch = svgRegex.test(fname);
       if (isMatch) {
