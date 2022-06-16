@@ -29,8 +29,8 @@
     "vue-template-compiler": "^2.6.0"
   },
   "peerDependencies": {
-    "vite": "^2.0.4",
-    "vue": "^2.6.12"
+    "vite": "^2.0.0",
+    "vue": "^2.3.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.19",

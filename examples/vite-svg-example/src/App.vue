@@ -1,5 +1,5 @@
 <template>
-  <MsgIcon style="fill: red; width: 200px; height: 200px" />
+  <MsgIcon @click="handleClick" style="fill: red; width: 200px; height: 200px" />
 </template>
 
 <script>
@@ -10,5 +10,10 @@ export default {
   components: {
     MsgIcon,
   },
+  methods: {
+    handleClick() {
+      alert("clicked");
+    }
+  }
 };
 </script>
