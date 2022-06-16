@@ -1,7 +1,7 @@
 import { readFileSync } from "fs";
 import { basename } from "path";
 import { optimize, OptimizeOptions } from "svgo";
-import { Plugin } from "vite";
+import type { Plugin } from "vite";
 import { compileTemplate, parse } from "@vue/component-compiler-utils";
 import * as compiler from "vue-template-compiler";
 
