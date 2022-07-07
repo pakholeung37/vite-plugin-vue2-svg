@@ -41,6 +41,12 @@ export default {
 </script>
 ```
 
+If you want disabled this plugin for specific file, just add `?raw` when you import.
+
+```typescript
+import Icon from "./icon.svg?raw"; // svg file import without transform
+```
+
 ## Options
 
 ```js
