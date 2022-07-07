@@ -6,11 +6,12 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vite-plugin-vue2": "^1.2.2",
-    "vue": "^2.6.0"
+    "vue": "2.7.3"
   },
   "devDependencies": {
+    "vite-plugin-vue2": "^1.2.2",
     "vite": "^2.0.0",
-    "vite-plugin-vue2-svg": "file:../../"
+    "vite-plugin-vue2-svg": "file:../../",
+    "vue-template-compiler": "2.7.3"
   }
 }
