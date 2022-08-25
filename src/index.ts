@@ -58,6 +58,9 @@ export function createSvgPlugin(
       if (/\?raw/.test(id)) {
         return null;
       }
+       if (/\?url/.test(id)) {
+        return;  // Use default svg loader
+      }
 
       const fname = id.replace(/\?.*$/, "");
       const isMatch = svgRegex.test(fname);
