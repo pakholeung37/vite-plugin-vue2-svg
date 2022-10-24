@@ -1,6 +1,6 @@
 import { readFileSync } from "fs";
 import { basename } from "path";
-import { optimize, OptimizeOptions } from "svgo";
+import { optimize, Config } from "svgo";
 import type { Plugin } from "vite";
 import { compileTemplate, parse } from "@vue/component-compiler-utils";
 import * as compiler from "vue-template-compiler";
@@ -32,7 +32,7 @@ function compileSvg(svg: any, id: string): string {
   `;
 }
 
-function optimizeSvg(content: string, svgoConfig: OptimizeOptions) {
+function optimizeSvg(content: string, svgoConfig: Config) {
   const result = optimize(content, svgoConfig);
 
   if ("data" in result) {
@@ -46,7 +46,7 @@ function optimizeSvg(content: string, svgoConfig: OptimizeOptions) {
 
 export function createSvgPlugin(
   options: {
-    svgoConfig?: OptimizeOptions;
+    svgoConfig?: Config;
   } = {},
 ): Plugin {
   const { svgoConfig } = options;
