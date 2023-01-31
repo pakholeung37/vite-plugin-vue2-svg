@@ -11,7 +11,7 @@ interface CompileResult {
 }
 
 function compileSvg(svg: any, id: string): CompileResult | null {
-  const component = parse({
+  const { template, script } = parse({
     source: `
       <template>
         ${svg}
@@ -26,11 +26,11 @@ function compileSvg(svg: any, id: string): CompileResult | null {
     filename: `${basename(id)}.vue`,
   });
 
-  if (!component || !component.template) return null;
+  if (!template) return null;
 
   const result = compileTemplate({
     compiler: compiler as any,
-    source: component.template.content,
+    source: template.content,
     filename: `${basename(id)}.vue`,
   });
 
@@ -41,7 +41,7 @@ function compileSvg(svg: any, id: string): CompileResult | null {
         render: render,
       }
     `,
-    map: component.script?.map,
+    map: script?.map,
   };
 }
 
