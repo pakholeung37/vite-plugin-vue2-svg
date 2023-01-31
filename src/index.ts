@@ -5,31 +5,44 @@ import type { Plugin } from "vite";
 import { compileTemplate, parse } from "@vue/component-compiler-utils";
 import * as compiler from "vue-template-compiler";
 
-function compileSvg(svg: any, id: string): string {
-  const template = parse({
+interface CompileResult {
+  code: string;
+  map?: any;
+}
+
+function compileSvg(svg: any, id: string): CompileResult | null {
+  const component = parse({
     source: `
       <template>
         ${svg}
       </template>
+      <script>
+      export default {
+        name: 'VueSvg',
+      }
+      </script>
     `,
     compiler: compiler as any,
     filename: `${basename(id)}.vue`,
-  }).template;
+  });
 
-  if (!template) return "";
+  if (!component || !component.template) return null;
 
   const result = compileTemplate({
     compiler: compiler as any,
-    source: template.content,
+    source: component.template.content,
     filename: `${basename(id)}.vue`,
   });
 
-  return `
-    ${result.code}
-    export default {
-      render: render,
-    }
-  `;
+  return {
+    code: `
+      ${result.code}
+      export default {
+        render: render,
+      }
+    `,
+    map: component.script?.map,
+  };
 }
 
 function optimizeSvg(content: string, svgoConfig: OptimizeOptions) {
@@ -54,7 +67,7 @@ export function createSvgPlugin(
 
   return {
     name: "vite-plugin-vue2-svg",
-    async transform(_source: string, id: string) {
+    transform(_source: string, id: string) {
       if (/\?raw/.test(id)) {
         return null;
       }
@@ -63,9 +76,11 @@ export function createSvgPlugin(
       const isMatch = svgRegex.test(fname);
       if (isMatch) {
         const code: string = readFileSync(fname, { encoding: "utf-8" });
-        let svg = await optimizeSvg(code, { path: fname, ...svgoConfig });
-        if (!svg)
+        let svg = optimizeSvg(code, { path: fname, ...svgoConfig });
+        if (!svg) {
           throw new Error(`[vite-plugin-vue2-svg] fail to compile ${id}`);
+        }
+
         svg = svg.replace("<svg", '<svg v-on="$listeners"');
         const result = compileSvg(svg, fname);
 
