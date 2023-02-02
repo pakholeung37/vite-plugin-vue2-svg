@@ -59,20 +59,28 @@ function optimizeSvg(content: string, svgoConfig: Config) {
 
 export function createSvgPlugin(
   options: {
+    defaultImport?:  'url' | 'raw' | 'component'
     svgoConfig?: Config;
   } = {},
 ): Plugin {
-  const { svgoConfig } = options;
+  const { svgoConfig, defaultImport = 'component' } = options;
   const svgRegex = /\.svg$/;
 
   return {
     name: "vite-plugin-vue2-svg",
-    transform(_source: string, id: string) {
-      if (/\?raw/.test(id)) {
-        return null;
+    async transform(_source: string, id: string) {
+      const [fname, query] = id.split('?', 2)
+
+      const importType = query || defaultImport
+
+      if (importType === 'url') {
+        return // Use default svg loader
       }
 
-      const fname = id.replace(/\?.*$/, "");
+      if(importType === 'raw') {
+        return null
+      }
+
       const isMatch = svgRegex.test(fname);
       if (isMatch) {
         const code: string = readFileSync(fname, { encoding: "utf-8" });
