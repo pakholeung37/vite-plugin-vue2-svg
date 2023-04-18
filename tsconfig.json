@@ -1,20 +1,14 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "target": "es2017",
+    "module": "esnext",
+    "lib": ["esnext"],
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "target": "ESNext",
-    "module": "commonjs",
-    "noImplicitAny": true,
-    "removeComments": true,
-    "sourceMap": true,
-    "downlevelIteration": true,
-    "lib": ["es6", "dom"],
-    "outDir": "./lib",
-    "allowJs": true,
-    "declaration": true,
-    "skipLibCheck": true
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules", "**/*.spec.ts"]
+    "strict": true,
+    "strictNullChecks": true,
+    "resolveJsonModule": true,
+    "jsx": "preserve",
+    "types": ["vite/client"]
+  }
 }

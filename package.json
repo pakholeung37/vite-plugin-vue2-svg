@@ -1,19 +1,10 @@
 {
-  "name": "vite-plugin-vue2-svg",
-  "version": "0.4.0",
-  "description": "load SVG files as Vue components, for Vue2.x only.",
-  "main": "lib/index.js",
-  "types": "./lib/index.d.ts",
-  "files": [
-    "lib"
-  ],
-  "repository": "https://github.com/pakholeung37/vite-plugin-vue2-svg",
-  "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w",
-    "build:type": "tsc -p ./tsconfig.type.json",
-    "test": "jest --no-cache"
-  },
+  "name": "unplugin-svg-vue-component",
+  "version": "0.0.0",
+  "description": "load SVG files as Vue components",
+  "author": "pakholeung37@gmail.com",
+  "license": "MIT",
+  "repository": "https://github.com/jaw52/unplugin-svg-vue-component",
   "keywords": [
     "vite",
     "vite-plugin",
@@ -21,27 +12,68 @@
     "vue2",
     "vue"
   ],
-  "author": "pakholeung37@gmail.com",
-  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./vite": {
+      "types": "./dist/vite.d.ts",
+      "require": "./dist/vite.js",
+      "import": "./dist/vite.mjs"
+    },
+    "./*": "./*"
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16.14.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "build": "tsup",
+    "release": "bumpp && npm publish",
+    "dev": "tsup --watch src",
+    "play:vue2": "pnpm run -C ./examples/vite-vue2 dev",
+    "play:vue3": "pnpm run -C ./examples/vite-vue3 dev",
+    "build:fix": "esno scripts/postbuild.ts"
+  },
   "peerDependencies": {
-    "vue-template-compiler": "^2.2.0"
+    "vue": "^2.7.0 || 3"
   },
   "dependencies": {
-    "@vue/component-compiler-utils": "^3.2.0",
-    "svgo": "^3.0.0"
+    "@rollup/pluginutils": "^5.0.2",
+    "@vue/compiler-sfc": "^3.2.47",
+    "@vue/component-compiler-utils": "^3.3.0",
+    "local-pkg": "^0.4.3",
+    "svgo": "^3.0.2",
+    "unplugin": "^1.3.1",
+    "vue-template-compiler": "^2.7.14"
   },
   "devDependencies": {
-    "@types/node": "^18.11.3",
-    "@typescript-eslint/eslint-plugin": "^4.15.0",
-    "@typescript-eslint/parser": "^4.15.0",
-    "eslint": "^7.21.0",
-    "eslint-config-prettier": "^8.1.0",
-    "eslint-plugin-prettier": "^3.3.0",
-    "prettier": "^2.2.1",
-    "tslib": "^2.1.0",
-    "typescript": "^4.2.0",
-    "vite": "^2.0.0",
-    "vue": "^2.0.0",
-    "vue-template-compiler": "^2.2.0"
+    "@antfu/eslint-config": "^0.38.4",
+    "@types/node": "^18.15.11",
+    "bumpp": "^9.1.0",
+    "chalk": "^5.2.0",
+    "eslint": "^8.38.0",
+    "esno": "^0.16.3",
+    "fast-glob": "^3.2.12",
+    "tsup": "^6.7.0",
+    "typescript": "^4.9.5",
+    "vite": "^4.2.1"
   }
 }

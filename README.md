@@ -1,58 +1,50 @@
-# vite-plugin-vue2-svg
+# unplugin-svg-vue-component
 
-load SVG files as Vue components, for Vue2.x only.
-
-[![NPM](https://nodei.co/npm/vite-plugin-vue2-svg.png)](https://npmjs.org/package/vite-plugin-vue2-svg/)
-
-## Install
+load SVG files as Vue components, Both `vue2` and `vue3` are supported.
 
 ```bash
-yarn add vite-plugin-vue2-svg
-# or
-npm install vite-plugin-vue2-svg
+npm i unplugin-svg-vue-component
 ```
 
 ## Usage
 
+### Vite
+
 ```js
-// vite.config.ts
-import { defineConfig } from "vite";
-import { createVuePlugin } from "vite-plugin-vue2"; // vue2 plugin
-import { createSvgPlugin } from "vite-plugin-vue2-svg";
+import svgPlugin from 'unplugin-svg-vue-component/vite'
+import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [createVuePlugin(), createSvgPlugin()],
-});
+  plugins: [
+    vue(),
+    svgPlugin(),
+  ],
+})
 ```
 
 ```vue
-<!-- App.vue -->
-<template>
-  <Icon />
-</template>
-<script>
-import Icon from "./icon.svg";
-
-export default {
-  components: {
-    Icon,
-  },
-};
+<script setup lang="ts">
+import MsgIcon from './msg.svg'
 </script>
-```
 
-If you want disabled this plugin for specific file, just add `?raw` when you import.
-
-```typescript
-import Icon from "./icon.svg?raw"; // svg file import without transform
+<template>
+  <MsgIcon />
+</template>
 ```
 
 ## Options
 
+- `optimize`: Disabled by default. Based on [svgo](https://github.com/svg/svgo)
+
 ```js
-createSvgPlugin({
-  svgoConfig: SVGO.Options, // check https://github.com/svg/svgo
-});
+// https://github.com/svg/svgo
+export default defineConfig({
+  plugins: [
+    vue2(),
+    svgPlugin({ optimize: true }),
+  ],
+})
 ```
 
 ## License

@@ -6,12 +6,10 @@
     "build": "vite build"
   },
   "dependencies": {
-    "vue": "2.7.3"
+    "vue": "^2.7.14"
   },
   "devDependencies": {
-    "vite-plugin-vue2": "^1.2.2",
-    "vite": "^2.0.0",
-    "vite-plugin-vue2-svg": "file:../../",
-    "vue-template-compiler": "2.7.3"
+    "@vitejs/plugin-vue2": "^2.2.0",
+    "unplugin-svg-vue-component": "workspace:*"
   }
 }
