@@ -1,6 +1,6 @@
 {
   "name": "unplugin-svg-vue-component",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "load SVG files as Vue components",
   "author": "pakholeung37@gmail.com",
   "license": "MIT",
