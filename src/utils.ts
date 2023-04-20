@@ -12,7 +12,7 @@ export function compileSvg(svg: string, path: string, options: Options): string 
   if (version === 2) {
     const result = vue2CompileTemplate({
       compiler: compiler as VueTemplateCompiler,
-      source: svg,
+      source: svg.replace('<svg', '<svg v-on="$listeners"'),
       filename: `${basename(path)}.vue`,
     })
 
