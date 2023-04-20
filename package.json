@@ -1,6 +1,6 @@
 {
   "name": "unplugin-svg-vue-component",
-  "version": "0.0.5-beta.1",
+  "version": "0.0.5-beta.2",
   "description": "Use svg as vue components with support for both vue2.7 and vue3.x",
   "author": "pakholeung37@gmail.com",
   "license": "MIT",
@@ -43,7 +43,7 @@
   },
   "files": [
     "dist",
-    "svg.d.ts"
+    "client.d.ts"
   ],
   "engines": {
     "node": ">=16.14.0"
