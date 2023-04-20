@@ -1,6 +1,6 @@
 # unplugin-svg-vue-component
 
-load SVG files as Vue components, Both `vue2` and `vue3` are supported.
+Use svg as vue components with support for both `vue2.7` and `vue3.x`.
 
 ```bash
 npm i unplugin-svg-vue-component
@@ -46,6 +46,15 @@ export default defineConfig({
   ],
 })
 ```
+
+## Acknowledgement
+
+Inspired by the following projects
+
+- [vite-svg-loader](https://github.com/jpkleemans/vite-svg-loader)
+
+- [vite-plugin-vue2-svg](https://github.com/pakholeung37/vite-plugin-vue2-svg)
+
 
 ## License
 

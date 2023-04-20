@@ -1,15 +1,17 @@
 {
   "name": "unplugin-svg-vue-component",
   "version": "0.0.1",
-  "description": "load SVG files as Vue components",
+  "description": "Use svg as vue components with support for both vue2.7 and vue3.x",
   "author": "pakholeung37@gmail.com",
   "license": "MIT",
   "repository": "https://github.com/jaw52/unplugin-svg-vue-component",
   "keywords": [
     "vite",
+    "svg-plugin",
     "vite-plugin",
     "vite-svg",
     "vue2",
+    "vue3",
     "vue"
   ],
   "exports": {
