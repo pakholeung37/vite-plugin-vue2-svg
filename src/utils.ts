@@ -2,14 +2,24 @@ import { basename } from 'node:path'
 import { compileTemplate as vue3CompileTemplate } from '@vue/compiler-sfc'
 import { compileTemplate as vue2CompileTemplate } from '@vue/component-compiler-utils'
 import { getPackageInfoSync } from 'local-pkg'
-import * as compiler from 'vue-template-compiler'
 import type { VueTemplateCompiler } from '@vue/component-compiler-utils/dist/types'
-import type { Options } from '.'
+import { consola } from 'consola'
+import { lightBlue } from 'kolorist'
+import { type Options, PLUGIN_NAME } from '.'
 
-export function compileSvg(svg: string, path: string, options: Options): string {
+export async function compileSvg(svg: string, path: string, options: Options): Promise<string | null> {
   const version = options.vueVersion || detectVueVersion()
 
   if (version === 2) {
+    const vueVer = await getPackageInfoSync('vue')?.version
+    const templateVer = await getPackageInfoSync('vue-template-compiler')?.version
+
+    if (vueVer !== templateVer) {
+      consola.error(`[${PLUGIN_NAME}]: The current environment detects using Vue2,PLEASE manually install ${lightBlue('vue-template-compiler')}\n${lightBlue('>')} npm i -D vue-template-compiler@${vueVer}`)
+      return null
+    }
+
+    const compiler = await import('vue-template-compiler')
     const result = vue2CompileTemplate({
       compiler: compiler as VueTemplateCompiler,
       source: svg.replace('<svg', '<svg v-on="$listeners"'),

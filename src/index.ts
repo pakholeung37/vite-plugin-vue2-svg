@@ -12,7 +12,7 @@ export interface Options {
   exclude?: FilterPattern
 }
 
-const PLUGIN_NAME = 'unplugin-svg-vue-component'
+export const PLUGIN_NAME = 'unplugin-svg-vue-component'
 
 export default createUnplugin<Options | undefined>((options = {}) => {
   const filter = createFilter(
@@ -26,7 +26,7 @@ export default createUnplugin<Options | undefined>((options = {}) => {
     transformInclude(id) {
       return filter(id)
     },
-    transform(_code, id) {
+    async transform(_code, id) {
       const [path] = id.split('?', 2)
       let svg = readFileSync(path, { encoding: 'utf-8' })
 
