@@ -28,6 +28,9 @@ export default defineConfig({
 ```vue
 <script setup lang="ts">
 import MsgIcon from './msg.svg'
+
+// OR
+// import MsgIcon from './msg.svg?component'
 </script>
 
 <template>

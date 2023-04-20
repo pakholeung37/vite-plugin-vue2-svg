@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MsgIcon from './msg.svg'
+import MsgIcon from './msg.svg?component'
 
 function handleClick() {
   // eslint-disable-next-line no-console
