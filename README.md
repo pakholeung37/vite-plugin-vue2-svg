@@ -1,9 +1,11 @@
 # unplugin-svg-vue-component
 
-Use svg as vue components with support for both `vue2.7` and `vue3.x`.
+![GitHub package.json version](https://img.shields.io/github/package-json/v/jaw52/unplugin-svg-vue-component?style=flat-square)
+
+Use SVG as vue components with support for both `vue2.7` and `vue3.x`.
 
 ```bash
-npm i unplugin-svg-vue-component
+npm i -D unplugin-svg-vue-component
 ```
 
 ## Usage
