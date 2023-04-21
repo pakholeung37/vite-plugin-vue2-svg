@@ -52,6 +52,24 @@ export default defineConfig({
 })
 ```
 
+## Used in TypeScript
+
+First tsconfig configuration
+
+```json
+{
+  "compilerOptions": {
+    "types": ["unplugin-svg-vue-component/client"]
+  }
+}
+```
+
+Then import the SVG using the following form to avoid ts errors
+
+```js
+import MsgIcon from './msg.svg?component'
+```
+
 ## Acknowledgement
 
 Inspired by the following projects
