@@ -72,7 +72,7 @@ import MsgIcon from './msg.svg?component'
 
 ## Acknowledgement
 
-Inspired by the following projects
+Integration of the following schemes
 
 - [vite-svg-loader](https://github.com/jpkleemans/vite-svg-loader)
 

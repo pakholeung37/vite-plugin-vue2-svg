@@ -33,7 +33,8 @@ export default createUnplugin<Options | undefined>((options = {}) => {
       if (options.optimize)
         svg = optimize(svg, typeof options.optimize === 'object' ? { ...options.optimize, path } : { path }).data
 
-      return compileSvg(svg, path, options)
+      const code = await compileSvg(svg, path, options)
+      return `${code} export default { render };`
     },
   })
 })
