@@ -34,7 +34,11 @@ export default createUnplugin<Options | undefined>((options = {}) => {
         svg = optimize(svg, typeof options.optimize === 'object' ? { ...options.optimize, path } : { path }).data
 
       const code = await compileSvg(svg, path, options)
-      return `${code}\nexport default { render };`
+
+      return {
+        code: `${code}\nexport default { render };`,
+        map: { mappings: '' },
+      }
     },
   })
 })
